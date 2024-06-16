@@ -59,6 +59,8 @@ v1 = (args.llama_version==1) and args.model_size in ["7b", "7B"]
 
 cache_dir = './cache'
 
+print(f"model_uri={model_uri}, cache_dir={cache_dir}, groupsize={args.groupsize}, double_groupsize={double_groupsize}, v1={v1}, bits={2}, half={True}, asym={asym}")
+
 model, tokenizer = load_llama_model(model_uri, cache_dir=cache_dir, groupsize=args.groupsize, double_groupsize=double_groupsize, v1=v1, bits=2, half=True, asym=asym)
 model.eval()
 

@@ -80,6 +80,7 @@ def llama_eval(model, testenc, dev = torch.device('cuda:0')):
         loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
         neg_log_likelihood = loss.float() * model.seqlen
         nlls.append(neg_log_likelihood)
+        print(f"loss of first {i+1}*2048 tokens: {loss.item()}")
     ppl = torch.exp(torch.stack(nlls).sum() / (nsamples * model.seqlen))
     print(ppl.item())
 
